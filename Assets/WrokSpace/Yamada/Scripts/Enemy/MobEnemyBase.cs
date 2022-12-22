@@ -4,10 +4,14 @@ namespace Enemy
 {
     public class MobEnemyBase : MonoBehaviour
     {
-        // このオブジェクトが生きているかを示す変数。
+        // このオブジェクトが生きているかを示す変数
         [System.NonSerialized] public bool isActive = false;
 
+        // プレイヤーが追尾/攻撃範囲内に入っているか示すフラグ
         [System.NonSerialized] public bool isPlayerInRange = false;
+
+        // プレイヤーコントローラーへの参照変数
+        protected TestPlayerController playerControllerRef;
 
         // 必要なマネージャーたちへの参照変数
         protected EnemyBulletManager enemyBulletManagerRef;
@@ -19,6 +23,7 @@ namespace Enemy
         protected virtual void Awake()
         {
             SetReferenceOfManagers();
+            SetReferenceOfPlayer();
         }
 
 
@@ -42,6 +47,17 @@ namespace Enemy
 
             // 必要なマネージャーが増えたとき、この下に同じ形でnullチェックを追加する。
             if (enemyBulletManagerRef == null) Debug.LogError($"EnemyBulletManager is not found. at: [{this.GetType().FullName}]");
+        }
+
+
+        /// <summary>
+        /// プレイヤーコントローラーへの参照を登録する。
+        /// </summary>
+        protected void SetReferenceOfPlayer()
+        {
+            playerControllerRef = (TestPlayerController)FindObjectOfType<TestPlayerController>();
+
+            if (playerControllerRef == null) Debug.LogError($"TestPlayerController is not found. at: [{this.GetType().FullName}]");
         }
     }
 }

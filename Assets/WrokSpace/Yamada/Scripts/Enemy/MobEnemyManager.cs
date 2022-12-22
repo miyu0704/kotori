@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace Enemy
 {
@@ -25,6 +26,7 @@ namespace Enemy
         /// </summary>
         private void Awake()
         {
+            CreateParentObject();
             CreateEnemies_FirstTime();
         }
 
@@ -34,13 +36,14 @@ namespace Enemy
         /// </summary>
         private void CreateEnemies_FirstTime()
         {
-            CreateParentObject();
-
             // enemyList_***を作り次第、この下に同じ形で追加していく。
             enemyListRefs.Add(enemyList_Red);
 
+            // 生成する敵の数を決める。
+            int createAmount = 1;
+
             // CreateEnemy_***を作り次第、この下に同じ形で追加していく。
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < createAmount; i++)
             {
                 CreateEnemy_Red();
             }
@@ -64,10 +67,10 @@ namespace Enemy
         /// <returns> 生成/再利用した敵のMobEnemyController_Red </returns>
         public MobEnemyController_Red CreateEnemy_Red()
         {
-            MobEnemyController_Red CreatedEnemy = CreateEnemy<MobEnemyController_Red>();
-            CreatedEnemy.Init();
+            MobEnemyController_Red createdEnemy = CreateEnemy<MobEnemyController_Red>();
+            createdEnemy.Init();
 
-            return CreatedEnemy;
+            return createdEnemy;
         }
 
 
