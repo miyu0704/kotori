@@ -35,6 +35,7 @@ namespace Enemy
         /// </summary>
         protected virtual void DoSettingsOfComponents()
         {
+            this.GetComponent<Collider2D>().isTrigger = true;
             myRigidbody.gravityScale = 0f;
         }
 

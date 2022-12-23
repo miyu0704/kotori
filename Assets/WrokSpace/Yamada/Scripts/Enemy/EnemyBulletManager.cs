@@ -13,8 +13,9 @@ namespace Enemy
         // TODO. SeiralizeFieldを解除し、Resources.Loadで設定するようにする。
         [SerializeField] GameObject[] bulletPrefabList;
 
-        // 生成した弾のクラスを管理するリスト
+        // 生成した弾のクラスを管理するリスト。Prefabを追加した際に、下に同じ形で追加する。
         List<EnemyBulletController_Red> bulletList_Red = new List<EnemyBulletController_Red>();
+        List<EnemyBulletController_Blue> bulletList_Blue = new List<EnemyBulletController_Blue>();
 
         // bulletList_*** たちへの参照を格納するリスト。CreateBullet<T>で使用する弾のリストを特定するために必要。
         List<System.Object> bulletListRefs = new List<System.Object>();
@@ -37,6 +38,7 @@ namespace Enemy
         {
             // bulletList_***を作り次第、この下に同じ形で追加していく。
             bulletListRefs.Add(bulletList_Red);
+            bulletListRefs.Add(bulletList_Blue);
 
             // 生成する弾の数を決める。
             int createAmount = 1;
@@ -45,6 +47,7 @@ namespace Enemy
             for (int i = 0; i < createAmount; i++)
             {
                 CreateBullet_Red();
+                CreateBullet_Blue();
             }
         }
 
@@ -65,6 +68,19 @@ namespace Enemy
         public EnemyBulletController_Red CreateBullet_Red()
         {
             EnemyBulletController_Red createdBullet = CreateBullet<EnemyBulletController_Red>();
+            createdBullet.Init();
+
+            return createdBullet;
+        }
+
+
+        /// <summary>
+        /// 敵弾赤を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した弾のEnemyBulletController_Red< /returns>
+        public EnemyBulletController_Blue CreateBullet_Blue()
+        {
+            EnemyBulletController_Blue createdBullet = CreateBullet<EnemyBulletController_Blue>();
             createdBullet.Init();
 
             return createdBullet;

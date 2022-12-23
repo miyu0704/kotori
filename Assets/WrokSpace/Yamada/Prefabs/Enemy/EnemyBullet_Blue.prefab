@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0e40d6ba5c18747d995e35942d849b3b, type: 3}
-  m_Color: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 5337496299775887556}
   - component: {fileID: 5337496299775887559}
   - component: {fileID: -3640928590141741281}
-  - component: {fileID: 5337496299775887558}
+  - component: {fileID: 3915659170399728112}
   m_Layer: 0
-  m_Name: EnemyBullet_Red
+  m_Name: EnemyBullet_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,13 +150,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5337496299775887558
+--- !u!114 &3915659170399728112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,6 +165,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5337496299775887553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef541c3da7904ab4a7aa2fdf1c65eb0, type: 3}
+  m_Script: {fileID: 11500000, guid: b24cbde6aa66c4fa78a7837a1f2fc983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

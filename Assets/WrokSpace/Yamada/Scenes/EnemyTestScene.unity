@@ -132,12 +132,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4464647471517086898, guid: fdda16cc4cbd34772b955d6fc8d30645, type: 3}
       propertyPath: bulletPrefabList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4464647471517086898, guid: fdda16cc4cbd34772b955d6fc8d30645, type: 3}
       propertyPath: bulletPrefabList.Array.data[0]
       value: 
       objectReference: {fileID: 5337496299775887553, guid: 8a105baae31334fa39fc1c5e31413f5d, type: 3}
+    - target: {fileID: 4464647471517086898, guid: fdda16cc4cbd34772b955d6fc8d30645, type: 3}
+      propertyPath: bulletPrefabList.Array.data[1]
+      value: 
+      objectReference: {fileID: 5337496299775887553, guid: d3075887fb248499e844d16bae96112e, type: 3}
     - target: {fileID: 4464647471517086899, guid: fdda16cc4cbd34772b955d6fc8d30645, type: 3}
       propertyPath: m_Name
       value: EnemyBulletManager
@@ -494,7 +498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850223325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 1.87, z: 0}
+  m_LocalPosition: {x: -6, y: 2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -522,7 +526,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850223325}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
