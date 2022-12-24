@@ -32,5 +32,6 @@ namespace Enemy
             myRigidbody.AddRelativeForce(Vector2.up * (moveSpeed - moveSpeed * currentSpeed / moveSpeed));
 
         }
+
     }
 }

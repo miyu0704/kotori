@@ -4,7 +4,7 @@ namespace Enemy
 {
     public class EnemyChasingRangeController : MonoBehaviour
     {
-        MobEnemyBase parentController = null;
+        private MobEnemyBase parentController = null;
 
 
         void Awake()

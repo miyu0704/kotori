@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class MobEnemyController_Red : MobEnemyBase
+    public class MobEnemyController_Blue : MobEnemyBase
     {
         // 弾を発射してから、次の弾が発射できるまでにかかる時間
         private const float reloadTime_sec = 1f;
@@ -26,7 +26,7 @@ namespace Enemy
             StartCoroutine(ToggleFlagAfterSeconds(isBulletReloading, reloadTime_sec));
 
             // 弾をManagerからもらう。
-            EnemyBulletController_Red bullet = enemyBulletManagerRef.CreateBullet_Red();
+            EnemyBulletController_Blue bullet = enemyBulletManagerRef.CreateBullet_Blue();
             bullet.transform.position = this.transform.position;
             bullet.Init();
 

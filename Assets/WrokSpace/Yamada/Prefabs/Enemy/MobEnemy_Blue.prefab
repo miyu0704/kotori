@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1454042189673927174}
   - component: {fileID: 1454042189673927172}
-  - component: {fileID: 1454042189673927175}
+  - component: {fileID: 8255422196970891084}
   m_Layer: 0
-  m_Name: MobEnemy_Red
+  m_Name: MobEnemy_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.56, y: 3.2}
   m_Direction: 0
---- !u!114 &1454042189673927175
+--- !u!114 &8255422196970891084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454042189673927169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae3efbc4707c4c709f8f5ed733fa0f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 62240018e22334688943fd0cd884d8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1454042189955483128
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0e40d6ba5c18747d995e35942d849b3b, type: 3}
-  m_Color: {r: 0.9716981, g: 0.050418302, b: 0.050418302, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

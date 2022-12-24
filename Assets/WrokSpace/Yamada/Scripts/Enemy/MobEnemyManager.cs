@@ -2,23 +2,28 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Enemy
 {
     public class MobEnemyManager : MonoBehaviour
     {
         // 生成した敵の親となるTransform
-        Transform enemiesParentTransform;
+        private Transform enemiesParentTransform;
 
         // 生成する敵のPrefabを格納するリスト
         // TODO. SerializeFieldを解除し、Resources.Loadで設定するようにする。
-        [SerializeField] GameObject[] enemyPrefabList;
+        [SerializeField]
+        private GameObject[] enemyPrefabList;
 
         // 生成した敵のクラスを格納するリスト
-        List<MobEnemyController_Red> enemyList_Red = new List<MobEnemyController_Red>();
+        private List<MobEnemyController_Red> enemyList_Red = new List<MobEnemyController_Red>();
+        private List<MobEnemyController_Blue> enemyList_Blue = new List<MobEnemyController_Blue>();
 
         // enemyList_*** たちへの参照を格納するリスト。CreateEnemy<T>で使用する敵のリストを特定するために必要
-        List<System.Object> enemyListRefs = new List<System.Object>();
+        private List<System.Object> enemyListRefs = new List<System.Object>();
+
+        // 未使用の敵が待機する座標
+        [System.NonSerialized]
+        public Vector2 enemyWaitingPosition = new Vector2(500, 500);
 
 
         /// <summary>
@@ -38,6 +43,9 @@ namespace Enemy
         {
             // enemyList_***を作り次第、この下に同じ形で追加していく。
             enemyListRefs.Add(enemyList_Red);
+            enemyListRefs.Add(enemyList_Blue);
+            var tempEnemyListToDisable_Red = new List<MobEnemyController_Red>();
+            var tempEnemyListToDisable_Blue = new List<MobEnemyController_Blue>();
 
             // 生成する敵の数を決める。
             int createAmount = 1;
@@ -45,7 +53,16 @@ namespace Enemy
             // CreateEnemy_***を作り次第、この下に同じ形で追加していく。
             for (int i = 0; i < createAmount; i++)
             {
-                CreateEnemy_Red();
+                tempEnemyListToDisable_Red.Add(CreateEnemy_Red());
+                tempEnemyListToDisable_Blue.Add(CreateEnemy_Blue());
+
+            }
+
+            // ここにも適宜同じ形で追加する。
+            for (int i = 0; i < createAmount; i++)
+            {
+                tempEnemyListToDisable_Red[i].Disable();
+                tempEnemyListToDisable_Blue[i].Disable();
             }
         }
 
@@ -72,6 +89,21 @@ namespace Enemy
 
             return createdEnemy;
         }
+
+
+        /// <summary>
+        /// ザコ妖精青を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した敵のMobEnemyController_Blue </returns>
+        public MobEnemyController_Blue CreateEnemy_Blue()
+        {
+            MobEnemyController_Blue createdEnemy = CreateEnemy<MobEnemyController_Blue>();
+            createdEnemy.Init();
+
+            return createdEnemy;
+        }
+
+
 
 
         /// <summary>
@@ -113,7 +145,7 @@ namespace Enemy
             }
 
             // 敵を生成し、そのクラスを管理リストに格納する。
-            T toReturnClass = Instantiate(toInstancePrefab, parent: enemiesParentTransform).GetComponent<T>();
+            T toReturnClass = Instantiate(toInstancePrefab, enemyWaitingPosition, Quaternion.identity, enemiesParentTransform).GetComponent<T>();
             targetList.Add(toReturnClass);
 
             // 通し番号があると見分けがついて便利なので付ける。

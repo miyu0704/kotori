@@ -1,4 +1,5 @@
 using UnityEngine;
+using Enemy;
 
 public class TestPlayerController : MonoBehaviour
 {
@@ -8,5 +9,25 @@ public class TestPlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
+
+        DebugKeyInput();
+    }
+
+
+    private void DebugKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobR = refEM.CreateEnemy_Red();
+            mobR.transform.position = new Vector2(-4, 2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobB = refEM.CreateEnemy_Blue();
+            mobB.transform.position = new Vector2(0, 2);
+        }
     }
 }

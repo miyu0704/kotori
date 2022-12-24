@@ -7,18 +7,23 @@ namespace Enemy
     public class EnemyBulletManager : MonoBehaviour
     {
         // 生成た弾の親となるTransform
-        Transform bulletsParentTransform;
+        private Transform bulletsParentTransform;
 
         // 生成する弾のPrefabを格納するリスト
         // TODO. SeiralizeFieldを解除し、Resources.Loadで設定するようにする。
-        [SerializeField] GameObject[] bulletPrefabList;
+        [SerializeField]
+        private GameObject[] bulletPrefabList;
 
         // 生成した弾のクラスを管理するリスト。Prefabを追加した際に、下に同じ形で追加する。
-        List<EnemyBulletController_Red> bulletList_Red = new List<EnemyBulletController_Red>();
-        List<EnemyBulletController_Blue> bulletList_Blue = new List<EnemyBulletController_Blue>();
+        private List<EnemyBulletController_Red> bulletList_Red = new List<EnemyBulletController_Red>();
+        private List<EnemyBulletController_Blue> bulletList_Blue = new List<EnemyBulletController_Blue>();
 
         // bulletList_*** たちへの参照を格納するリスト。CreateBullet<T>で使用する弾のリストを特定するために必要。
-        List<System.Object> bulletListRefs = new List<System.Object>();
+        private List<System.Object> bulletListRefs = new List<System.Object>();
+
+        // 未使用の弾が待機する座標
+        [System.NonSerialized]
+        public Vector2 bulletWaitingPosition = new Vector2(500, 500);
 
 
         /// <summary>
@@ -39,15 +44,24 @@ namespace Enemy
             // bulletList_***を作り次第、この下に同じ形で追加していく。
             bulletListRefs.Add(bulletList_Red);
             bulletListRefs.Add(bulletList_Blue);
+            var tempBulletListToDisable_Red = new List<EnemyBulletController_Red>();
+            var tempBulletListToDisable_Blue = new List<EnemyBulletController_Blue>();
 
             // 生成する弾の数を決める。
-            int createAmount = 1;
+            int createAmount = 20;
 
             // CreateBullet_***を作り次第、この下に同じ形で追加していく。
             for (int i = 0; i < createAmount; i++)
             {
-                CreateBullet_Red();
-                CreateBullet_Blue();
+                tempBulletListToDisable_Red.Add(CreateBullet_Red());
+                tempBulletListToDisable_Blue.Add(CreateBullet_Blue());
+            }
+
+            // ここにも適宜同じ形で追加する。
+            for (int i = 0; i < createAmount; i++)
+            {
+                tempBulletListToDisable_Red[i].Disable();
+                tempBulletListToDisable_Blue[i].Disable();
             }
         }
 
@@ -68,7 +82,6 @@ namespace Enemy
         public EnemyBulletController_Red CreateBullet_Red()
         {
             EnemyBulletController_Red createdBullet = CreateBullet<EnemyBulletController_Red>();
-            createdBullet.Init();
 
             return createdBullet;
         }
@@ -81,7 +94,6 @@ namespace Enemy
         public EnemyBulletController_Blue CreateBullet_Blue()
         {
             EnemyBulletController_Blue createdBullet = CreateBullet<EnemyBulletController_Blue>();
-            createdBullet.Init();
 
             return createdBullet;
         }
@@ -125,7 +137,7 @@ namespace Enemy
             }
 
             // 弾を生成し、そのクラスを管理リストに格納する。
-            T toReturnClass = Instantiate(toInstancePrefab, parent: bulletsParentTransform).GetComponent<T>();
+            T toReturnClass = Instantiate(toInstancePrefab, bulletWaitingPosition, Quaternion.identity, bulletsParentTransform).GetComponent<T>();
             targetList.Add(toReturnClass);
 
             // 通し番号があると見分けがついて便利なので付ける。
