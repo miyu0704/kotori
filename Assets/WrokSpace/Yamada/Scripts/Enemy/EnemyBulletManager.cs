@@ -17,6 +17,8 @@ namespace Enemy
         // 生成した弾のクラスを管理するリスト。Prefabを追加した際に、下に同じ形で追加する。
         private List<EnemyBulletController_Red> bulletList_Red = new List<EnemyBulletController_Red>();
         private List<EnemyBulletController_Blue> bulletList_Blue = new List<EnemyBulletController_Blue>();
+        private List<EnemyBulletController_Yellow> bulletList_Yellow = new List<EnemyBulletController_Yellow>();
+        private List<EnemyBulletController_Purple> bulletList_Purple = new List<EnemyBulletController_Purple>();
 
         // bulletList_*** たちへの参照を格納するリスト。CreateBullet<T>で使用する弾のリストを特定するために必要。
         private List<System.Object> bulletListRefs = new List<System.Object>();
@@ -44,8 +46,12 @@ namespace Enemy
             // bulletList_***を作り次第、この下に同じ形で追加していく。
             bulletListRefs.Add(bulletList_Red);
             bulletListRefs.Add(bulletList_Blue);
+            bulletListRefs.Add(bulletList_Yellow);
+            bulletListRefs.Add(bulletList_Purple);
             var tempBulletListToDisable_Red = new List<EnemyBulletController_Red>();
             var tempBulletListToDisable_Blue = new List<EnemyBulletController_Blue>();
+            var tempBulletListToDisable_Yellow = new List<EnemyBulletController_Yellow>();
+            var tempBulletListToDisable_Purple = new List<EnemyBulletController_Purple>();
 
             // 生成する弾の数を決める。
             int createAmount = 20;
@@ -55,6 +61,8 @@ namespace Enemy
             {
                 tempBulletListToDisable_Red.Add(CreateBullet_Red());
                 tempBulletListToDisable_Blue.Add(CreateBullet_Blue());
+                tempBulletListToDisable_Yellow.Add(CreateBullet_Yellow());
+                tempBulletListToDisable_Purple.Add(CreateBullet_Purple());
             }
 
             // ここにも適宜同じ形で追加する。
@@ -62,8 +70,11 @@ namespace Enemy
             {
                 tempBulletListToDisable_Red[i].Disable();
                 tempBulletListToDisable_Blue[i].Disable();
+                tempBulletListToDisable_Yellow[i].Disable();
+                tempBulletListToDisable_Purple[i].Disable();
             }
         }
+
 
         /// <summary>
         /// このオブジェクトの子に空オブジェクトを生成し、今後生成する弾の親オブジェクトとして設定する。
@@ -75,28 +86,50 @@ namespace Enemy
             bulletsParentTransform.name = "BulletsParent";
         }
 
+
         /// <summary>
         /// 敵弾赤を生成/再利用する。
         /// </summary>
-        /// <returns> 生成/再利用した弾のEnemyBulletController_Red< /returns>
+        /// <returns> 生成/再利用した弾のEnemyBulletController_Red </returns>
         public EnemyBulletController_Red CreateBullet_Red()
         {
             EnemyBulletController_Red createdBullet = CreateBullet<EnemyBulletController_Red>();
-
             return createdBullet;
         }
 
 
         /// <summary>
-        /// 敵弾赤を生成/再利用する。
+        /// 敵弾青を生成/再利用する。
         /// </summary>
-        /// <returns> 生成/再利用した弾のEnemyBulletController_Red< /returns>
+        /// <returns> 生成/再利用した弾のEnemyBulletController_Blue </returns>
         public EnemyBulletController_Blue CreateBullet_Blue()
         {
             EnemyBulletController_Blue createdBullet = CreateBullet<EnemyBulletController_Blue>();
-
             return createdBullet;
         }
+
+
+        // <summary>
+        /// 敵弾黄を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した弾のEnemyBulletController_Yellow </returns>
+        public EnemyBulletController_Yellow CreateBullet_Yellow()
+        {
+            EnemyBulletController_Yellow createdBullet = CreateBullet<EnemyBulletController_Yellow>();
+            return createdBullet;
+        }
+
+
+        /// <summary>
+        /// 敵弾紫を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した弾のEnemyBulletController_Purple </returns>
+        public EnemyBulletController_Purple CreateBullet_Purple()
+        {
+            EnemyBulletController_Purple createdBullet = CreateBullet<EnemyBulletController_Purple>();
+            return createdBullet;
+        }
+
 
         /// <summary>
         /// Tで指定したクラスを持つ弾を生成/再利用する。

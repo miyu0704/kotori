@@ -29,5 +29,19 @@ public class TestPlayerController : MonoBehaviour
             var mobB = refEM.CreateEnemy_Blue();
             mobB.transform.position = new Vector2(0, 2);
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobY = refEM.CreateEnemy_Yellow();
+            mobY.transform.position = new Vector2(0, 2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobP = refEM.CreateEnemy_Purple();
+            mobP.transform.position = new Vector2(4, 2);
+        }
     }
 }

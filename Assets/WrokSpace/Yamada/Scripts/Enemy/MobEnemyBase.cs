@@ -4,6 +4,7 @@ using Useful;
 
 namespace Enemy
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class MobEnemyBase : MonoBehaviour
     {
         // このオブジェクトが生きているかを示す変数
@@ -12,6 +13,7 @@ namespace Enemy
 
         // このオブジェクトのコンポーネント
         protected Collider2D myCollider;
+        protected Rigidbody2D myRigidbody;
 
         // プレイヤーが追尾/攻撃範囲内に入っているか示すフラグ
         [System.NonSerialized]
@@ -33,10 +35,23 @@ namespace Enemy
         protected virtual void Awake()
         {
             myCollider = this.GetComponent<Collider2D>();
+            myRigidbody = this.GetComponent<Rigidbody2D>();
             isBulletReloading = new CanIEnumeratorRefBool();
+
+            DoSettingsOfComponents();
 
             SetReferenceOfManagers();
             SetReferenceOfPlayer();
+        }
+
+
+        /// <summary>
+        /// 忘れがちなコンポーネントの設定を一括で行う。
+        /// </summary>
+        protected virtual void DoSettingsOfComponents()
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+            myRigidbody.gravityScale = 0f;
         }
 
 

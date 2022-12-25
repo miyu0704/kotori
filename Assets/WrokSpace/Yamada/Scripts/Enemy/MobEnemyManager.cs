@@ -17,6 +17,8 @@ namespace Enemy
         // 生成した敵のクラスを格納するリスト
         private List<MobEnemyController_Red> enemyList_Red = new List<MobEnemyController_Red>();
         private List<MobEnemyController_Blue> enemyList_Blue = new List<MobEnemyController_Blue>();
+        private List<MobEnemyController_Yellow> enemyList_Yellow = new List<MobEnemyController_Yellow>();
+        private List<MobEnemyController_Purple> enemyList_Purple = new List<MobEnemyController_Purple>();
 
         // enemyList_*** たちへの参照を格納するリスト。CreateEnemy<T>で使用する敵のリストを特定するために必要
         private List<System.Object> enemyListRefs = new List<System.Object>();
@@ -44,8 +46,12 @@ namespace Enemy
             // enemyList_***を作り次第、この下に同じ形で追加していく。
             enemyListRefs.Add(enemyList_Red);
             enemyListRefs.Add(enemyList_Blue);
+            enemyListRefs.Add(enemyList_Yellow);
+            enemyListRefs.Add(enemyList_Purple);
             var tempEnemyListToDisable_Red = new List<MobEnemyController_Red>();
             var tempEnemyListToDisable_Blue = new List<MobEnemyController_Blue>();
+            var tempEnemyListToDisable_Yellow = new List<MobEnemyController_Yellow>();
+            var tempEnemyListToDisable_Purple = new List<MobEnemyController_Purple>();
 
             // 生成する敵の数を決める。
             int createAmount = 1;
@@ -55,7 +61,8 @@ namespace Enemy
             {
                 tempEnemyListToDisable_Red.Add(CreateEnemy_Red());
                 tempEnemyListToDisable_Blue.Add(CreateEnemy_Blue());
-
+                tempEnemyListToDisable_Yellow.Add(CreateEnemy_Yellow());
+                tempEnemyListToDisable_Purple.Add(CreateEnemy_Purple());
             }
 
             // ここにも適宜同じ形で追加する。
@@ -63,6 +70,8 @@ namespace Enemy
             {
                 tempEnemyListToDisable_Red[i].Disable();
                 tempEnemyListToDisable_Blue[i].Disable();
+                tempEnemyListToDisable_Yellow[i].Disable();
+                tempEnemyListToDisable_Purple[i].Disable();
             }
         }
 
@@ -104,6 +113,30 @@ namespace Enemy
         }
 
 
+        /// <summary>
+        /// ザコ妖精黄を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した敵のMobEnemyController_Yellow </returns>
+        public MobEnemyController_Yellow CreateEnemy_Yellow()
+        {
+            MobEnemyController_Yellow createdEnemy = CreateEnemy<MobEnemyController_Yellow>();
+            createdEnemy.Init();
+
+            return createdEnemy;
+        }
+
+
+        /// <summary>
+        /// ザコ妖精紫を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した敵のMobEnemyController_Purple </returns>
+        public MobEnemyController_Purple CreateEnemy_Purple()
+        {
+            MobEnemyController_Purple createdEnemy = CreateEnemy<MobEnemyController_Purple>();
+            createdEnemy.Init();
+
+            return createdEnemy;
+        }
 
 
         /// <summary>
