@@ -27,6 +27,7 @@ namespace Enemy
 
         // 必要なマネージャーたちへの参照変数
         protected EnemyBulletManager enemyBulletManagerRef;
+        protected MobEnemyManager mobEnemyManagerRef;
 
 
         /// <summary>
@@ -103,9 +104,11 @@ namespace Enemy
         {
             // 必要なマネージャーが増えたとき、この下に同じ形で追加する。
             enemyBulletManagerRef = (EnemyBulletManager)FindObjectOfType<EnemyBulletManager>();
+            mobEnemyManagerRef = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
 
             // 必要なマネージャーが増えたとき、この下に同じ形でnullチェックを追加する。
             if (enemyBulletManagerRef == null) Debug.LogError($"EnemyBulletManager is not found. at: [{this.GetType().FullName}]");
+            if (mobEnemyManagerRef == null) Debug.LogError($"MobEnemyManager is not found. at: [{this.GetType().FullName}]");
         }
 
 

@@ -18,7 +18,9 @@ namespace Enemy
         private List<MobEnemyController_Red> enemyList_Red = new List<MobEnemyController_Red>();
         private List<MobEnemyController_Blue> enemyList_Blue = new List<MobEnemyController_Blue>();
         private List<MobEnemyController_Yellow> enemyList_Yellow = new List<MobEnemyController_Yellow>();
+        private List<MobEnemyController_Green> enemyList_Green = new List<MobEnemyController_Green>();
         private List<MobEnemyController_Purple> enemyList_Purple = new List<MobEnemyController_Purple>();
+        private List<MobEnemyController_White> enemyList_White = new List<MobEnemyController_White>();
 
         // enemyList_*** たちへの参照を格納するリスト。CreateEnemy<T>で使用する敵のリストを特定するために必要
         private List<System.Object> enemyListRefs = new List<System.Object>();
@@ -47,11 +49,15 @@ namespace Enemy
             enemyListRefs.Add(enemyList_Red);
             enemyListRefs.Add(enemyList_Blue);
             enemyListRefs.Add(enemyList_Yellow);
+            enemyListRefs.Add(enemyList_Green);
             enemyListRefs.Add(enemyList_Purple);
+            enemyListRefs.Add(enemyList_White);
             var tempEnemyListToDisable_Red = new List<MobEnemyController_Red>();
             var tempEnemyListToDisable_Blue = new List<MobEnemyController_Blue>();
             var tempEnemyListToDisable_Yellow = new List<MobEnemyController_Yellow>();
+            var tempEnemyListToDisable_Green = new List<MobEnemyController_Green>();
             var tempEnemyListToDisable_Purple = new List<MobEnemyController_Purple>();
+            var tempEnemyListToDisable_White = new List<MobEnemyController_White>();
 
             // 生成する敵の数を決める。
             int createAmount = 1;
@@ -62,7 +68,9 @@ namespace Enemy
                 tempEnemyListToDisable_Red.Add(CreateEnemy_Red());
                 tempEnemyListToDisable_Blue.Add(CreateEnemy_Blue());
                 tempEnemyListToDisable_Yellow.Add(CreateEnemy_Yellow());
+                tempEnemyListToDisable_Green.Add(CreateEnemy_Green());
                 tempEnemyListToDisable_Purple.Add(CreateEnemy_Purple());
+                tempEnemyListToDisable_White.Add(CreateEnemy_White());
             }
 
             // ここにも適宜同じ形で追加する。
@@ -71,7 +79,9 @@ namespace Enemy
                 tempEnemyListToDisable_Red[i].Disable();
                 tempEnemyListToDisable_Blue[i].Disable();
                 tempEnemyListToDisable_Yellow[i].Disable();
+                tempEnemyListToDisable_Green[i].Disable();
                 tempEnemyListToDisable_Purple[i].Disable();
+                tempEnemyListToDisable_White[i].Disable();
             }
         }
 
@@ -127,12 +137,38 @@ namespace Enemy
 
 
         /// <summary>
+        /// ザコ妖精緑を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した敵のMobEnemyController_Green </returns>
+        public MobEnemyController_Green CreateEnemy_Green()
+        {
+            MobEnemyController_Green createdEnemy = CreateEnemy<MobEnemyController_Green>();
+            createdEnemy.Init();
+
+            return createdEnemy;
+        }
+
+
+        /// <summary>
         /// ザコ妖精紫を生成/再利用する。
         /// </summary>
         /// <returns> 生成/再利用した敵のMobEnemyController_Purple </returns>
         public MobEnemyController_Purple CreateEnemy_Purple()
         {
             MobEnemyController_Purple createdEnemy = CreateEnemy<MobEnemyController_Purple>();
+            createdEnemy.Init();
+
+            return createdEnemy;
+        }
+
+
+        /// <summary>
+        /// ザコ妖精白を生成/再利用する。
+        /// </summary>
+        /// <returns> 生成/再利用した敵のMobEnemyController_White </returns>
+        public MobEnemyController_White CreateEnemy_White()
+        {
+            MobEnemyController_White createdEnemy = CreateEnemy<MobEnemyController_White>();
             createdEnemy.Init();
 
             return createdEnemy;

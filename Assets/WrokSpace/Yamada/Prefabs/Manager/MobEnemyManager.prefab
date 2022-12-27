@@ -47,4 +47,7 @@ MonoBehaviour:
   enemyPrefabList:
   - {fileID: 1454042189673927169, guid: bf767ce606f86450a9ffc7dc31ec0a82, type: 3}
   - {fileID: 1454042189673927169, guid: 984a86431031b4926a6cd36b52ace632, type: 3}
+  - {fileID: 1454042189673927169, guid: e788c49ea31a14e6da3d636cdd64439f, type: 3}
+  - {fileID: 1454042189673927169, guid: 2c510a3da1ab14c9581c2fe512236dda, type: 3}
   - {fileID: 1454042189673927169, guid: 22b44ed17ca1442b6978f407825b0868, type: 3}
+  - {fileID: 1454042189673927169, guid: 20b4a5abaafcb408792d8c56ea03671c, type: 3}

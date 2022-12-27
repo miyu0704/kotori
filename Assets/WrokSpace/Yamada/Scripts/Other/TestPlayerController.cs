@@ -37,11 +37,26 @@ public class TestPlayerController : MonoBehaviour
             mobY.transform.position = new Vector2(0, 2);
         }
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobG = refEM.CreateEnemy_Green();
+            mobG.transform.position = new Vector2(4, 2);
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
             var mobP = refEM.CreateEnemy_Purple();
-            mobP.transform.position = new Vector2(4, 2);
+            mobP.transform.position = new Vector2(-4, -2);
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            var refEM = (MobEnemyManager)FindObjectOfType<MobEnemyManager>();
+            var mobW = refEM.CreateEnemy_White();
+            mobW.transform.position = new Vector2(-4, -2);
+        }
+
     }
 }
