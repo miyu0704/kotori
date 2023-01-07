@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.tatsuki-yamada.reusableobjectmanager": {
+      "version": "https://github.com/Tatsuki-Yamada/ReusableObjectManager.git?path=Packages/com.tatsuki-yamada.reusableobjectmanager",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "db80e5f77f851619f9a3bcf87eea15e59da4e739"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.4",
       "depth": 1,
