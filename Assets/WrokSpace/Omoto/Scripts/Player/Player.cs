@@ -92,8 +92,8 @@ public class Player : Character
         {
             stateProcessor = new DamageState();
 
-            // TODO：GameOverのUIを表示する（以下は一例）
-            // SingletonAttacher<GameManager>.instance.gameProcessor.CallUI(e_GAMEOVER);
+            // TODO：GameOverのUIを表示する
+
         }
     }
 
@@ -102,9 +102,6 @@ public class Player : Character
      * 
      * １．プレイヤーを死亡状態にする（m_StateをDamageStateに遷移する）
      * ２．GameOverのUIを表示する
-     * （直接UIを表示する役割や、UIManagerを動作させる役割は持たない。イベントは原則として "出来事" であるので
-     * 　イベントから適切なゲームプロセッサーの処理を呼び出し、ゲームプロセッサーがその処理責任を負う。
-     * 　ただし、ゲームプロセッサーは指示役であるので、直接的な実行処理は各クラス（UIManager etc...）が行う。）
      */
 
     // その他（アイテム）
@@ -215,10 +212,16 @@ public class Player : Character
         }
 
         // 被弾判定
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Bullet")
         {
             OnDamage();
         }
+        /*
+        if (collision.gameObject.tag == "")
+        {
+            OnDamage();
+        }
+        */
     }
 
     // 以下 オブジェクトメソッド
