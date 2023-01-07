@@ -8,9 +8,7 @@ namespace Enemy
         private const float shootingAngle = 60f;
 
 
-        /// <summary>
-        /// 生成/再利用時に呼ばれる関数。放物線を描く射出処理を挟むため、overrideしている。
-        /// </summary>
+        // 放物線を描く射出処理を挟むため、overrideしている。
         public override void Init()
         {
             base.Init();
@@ -19,9 +17,7 @@ namespace Enemy
         }
 
 
-        /// <summary>
-        /// 忘れがちなコンポーネントの設定を一括で行う。放物線に重力を使用するので、gravityScaleを1に戻す処理を挟むために、overrideしている。
-        /// </summary>
+        // 放物線に重力を使用するため、overrideしている。
         protected override void DoSettingsOfComponents()
         {
             base.DoSettingsOfComponents();

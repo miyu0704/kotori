@@ -14,6 +14,12 @@ public class TestPlayerController : MonoBehaviour
     }
 
 
+    public void Dead()
+    {
+        Debug.Log("Dead");
+    }
+
+
     private void DebugKeyInput()
     {
         if (Input.GetKeyDown(KeyCode.R))

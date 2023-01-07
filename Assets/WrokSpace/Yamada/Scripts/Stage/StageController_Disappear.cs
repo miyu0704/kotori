@@ -1,19 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StageController_Disappear : MonoBehaviour
 {
-    SpriteRenderer modelSprite;
+    // このオブジェクトのコンポーネント
+    SpriteRenderer mySprite;
 
+    // 消滅までにかかる時間
     private float disappearingTime_Sec = 3f;
 
 
+    /// <summary>
+    /// Awake
+    /// </summary>
     private void Awake()
     {
-        modelSprite = GetComponentInChildren<SpriteRenderer>();
+        mySprite = GetComponentInChildren<SpriteRenderer>();
     }
 
+
+    /// <summary>
+    /// OnCollisionEnter2D
+    /// </summary>
+    /// <param name="collisionInfo"></param>
     private void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         if (collisionInfo.gameObject.CompareTag("Player"))
@@ -23,15 +32,19 @@ public class StageController_Disappear : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 時間と共に薄くなっていき、最後に消える。
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Disappearing()
     {
         yield return new WaitForSeconds(disappearingTime_Sec / 3);
 
-        modelSprite.color = modelSprite.color - new Color32(0, 0, 0, 86);
+        mySprite.color = mySprite.color - new Color32(0, 0, 0, 86);
 
         yield return new WaitForSeconds(disappearingTime_Sec / 3);
 
-        modelSprite.color = modelSprite.color - new Color32(0, 0, 0, 86);
+        mySprite.color = mySprite.color - new Color32(0, 0, 0, 86);
 
         yield return new WaitForSeconds(disappearingTime_Sec / 3);
 

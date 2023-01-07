@@ -93,6 +93,19 @@ namespace Enemy
 
 
         /// <summary>
+        /// OnTriggerEnter2D
+        /// </summary>
+        /// <param name="other"></param>
+        protected virtual void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.GetComponent<TestPlayerController>().Dead();
+            }
+        }
+
+
+        /// <summary>
         /// 必要なマネージャーを持つオブジェクトを検索し、自分の参照変数に登録する。
         /// </summary>
         protected void SetReferenceOfManagers()

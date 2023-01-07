@@ -3,6 +3,7 @@ using Useful;
 
 public class StageController_Move : MonoBehaviour
 {
+    // 
     private CanIEnumeratorRefBool isMoveReverse = new CanIEnumeratorRefBool();
 
     private Vector2 initPosition;

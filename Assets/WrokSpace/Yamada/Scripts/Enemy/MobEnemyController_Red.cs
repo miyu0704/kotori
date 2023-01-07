@@ -29,8 +29,6 @@ namespace Enemy
             EnemyBulletController_Red bullet = enemyBulletManagerRef.CreateBullet_Red();
             bullet.transform.position = this.transform.position;
             bullet.Init();
-
         }
-
     }
 }

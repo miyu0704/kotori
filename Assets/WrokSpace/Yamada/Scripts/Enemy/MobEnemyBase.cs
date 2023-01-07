@@ -61,12 +61,10 @@ namespace Enemy
         /// </summary>
         public virtual void Init()
         {
-            // TODO. Initの中身を書く。現状だと使用する弾を確保する？
             isActive = true;
 
             myCollider.enabled = true;
             isBulletReloading.flag = false;
-
         }
 
 

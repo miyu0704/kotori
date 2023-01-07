@@ -8,9 +8,7 @@ namespace Enemy
         private float moveSpeed = 3f;
 
 
-        /// <summary>
-        /// 生成/再利用時に呼ばれる関数。プレイヤーの方向を向く処理のため、overrideしている。
-        /// </summary>
+        // プレイヤーの方向を向く処理のため、overrideしている。
         public override void Init()
         {
             base.Init();
