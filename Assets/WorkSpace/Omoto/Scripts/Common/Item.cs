@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,20 +6,20 @@ using UnityEngine;
 using Utility;
 
 /// <summary>
-/// ItemFƒLƒƒƒ‰ƒNƒ^[‚É•t‚·‚é—lX‚ÈƒIƒuƒWƒFƒNƒg‚ğ_“î‚É‘Î‰‚Å‚«‚é‚æ‚¤‚Éì¬ <br />
-/// @@@iƒn[ƒhƒR[ƒfƒBƒ“ƒO‘Îôj
+/// Itemï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«ä»˜éšã™ã‚‹æ§˜ã€…ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŸ”è»Ÿã«å¯¾å¿œã§ãã‚‹ã‚ˆã†ã«ä½œæˆ <br />
+/// ã€€ã€€ã€€ï¼ˆãƒãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å¯¾ç­–ï¼‰
 /// </summary>
 namespace Item
 {
     public class ItemManager : MonoBehaviour
     {
-        // ƒAƒCƒeƒ€ƒŠƒXƒg
+        // ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
         static List<ItemProcessor> m_ItemLists = new List<ItemProcessor>();
 
         /// <summary>
-        /// ƒAƒCƒeƒ€“o˜^
+        /// ã‚¢ã‚¤ãƒ†ãƒ ç™»éŒ²
         /// </summary>
-        /// <param name="item">“o˜^‚·‚éƒAƒCƒeƒ€</param>
+        /// <param name="item">ç™»éŒ²ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ </param>
         public ItemProcessor AddItem(ItemProcessor item)
         {
             m_ItemLists.Add(item);
@@ -27,14 +27,14 @@ namespace Item
         }
 
         /// <summary>
-        /// ƒAƒCƒeƒ€“o˜^‰ğœ
+        /// ã‚¢ã‚¤ãƒ†ãƒ ç™»éŒ²è§£é™¤
         /// </summary>
         public void ClearItems() => m_ItemLists.Clear();
 
         /// <summary>
-        /// ƒAƒCƒeƒ€æ“¾i¶¬j
+        /// ã‚¢ã‚¤ãƒ†ãƒ å–å¾—ï¼ˆç”Ÿæˆï¼‰
         /// </summary>
-        /// <param name="id">ƒAƒCƒeƒ€“o˜^‡ID</param>
+        /// <param name="id">ã‚¢ã‚¤ãƒ†ãƒ ç™»éŒ²é †ID</param>
         public ItemProcessor GetItem(int id)
         {
             return m_ItemLists[id].Clone();
@@ -42,11 +42,11 @@ namespace Item
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€ÀsŠÇ—ƒNƒ‰ƒX
+    /// ã‚¢ã‚¤ãƒ†ãƒ å®Ÿè¡Œç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     public abstract class ItemProcessor : MonoBehaviour
     {
-        // ƒfƒŠƒQ[ƒgFˆ—‚ğ•ÊƒIƒuƒWƒFƒNƒg‚ÉˆÚ÷‚·‚é‚±‚Æ
+        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆï¼šå‡¦ç†ã‚’åˆ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç§»è­²ã™ã‚‹ã“ã¨
         public Action ExecAction { get; set; }
 
         public ItemProcessor Clone()
@@ -64,15 +64,15 @@ namespace Item
     }
 
     /// <summary>
-    /// ƒfƒRƒŒ[ƒgƒAƒCƒeƒ€ÀsŠÇ—ƒNƒ‰ƒX <br/>
-    /// iŒ³‚ÌƒAƒCƒeƒ€‚ğƒx[ƒX‚É‚³‚ç‚ÉŒÂ•Ê‚Ìˆ—‚ğ“±“ü‚µ‚½‚¢‚Æ‚«‚Éˆµ‚¤j
+    /// ãƒ‡ã‚³ãƒ¬ãƒ¼ãƒˆã‚¢ã‚¤ãƒ†ãƒ å®Ÿè¡Œç®¡ç†ã‚¯ãƒ©ã‚¹ <br/>
+    /// ï¼ˆå…ƒã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒ™ãƒ¼ã‚¹ã«ã•ã‚‰ã«å€‹åˆ¥ã®å‡¦ç†ã‚’å°å…¥ã—ãŸã„ã¨ãã«æ‰±ã†ï¼‰
     /// </summary>
     public class ItemDecorator : ItemProcessor
     {
-        // ƒfƒRƒŒ[ƒgæƒAƒCƒeƒ€
+        // ãƒ‡ã‚³ãƒ¬ãƒ¼ãƒˆå…ˆã‚¢ã‚¤ãƒ†ãƒ 
         ItemProcessor m_Item;
 
-        // ƒfƒŠƒQ[ƒgFˆ—‚ğ•ÊƒIƒuƒWƒFƒNƒg‚ÉˆÚ÷‚·‚é‚±‚Æ
+        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆï¼šå‡¦ç†ã‚’åˆ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç§»è­²ã™ã‚‹ã“ã¨
         public Action DecoAction { get; set; }
 
         public ItemDecorator(ItemProcessor item)
@@ -82,13 +82,13 @@ namespace Item
 
         public override void Execute()
         {
-            // ƒfƒRƒŒ[ƒgˆ—
+            // ãƒ‡ã‚³ãƒ¬ãƒ¼ãƒˆå‡¦ç†
             if(DecoAction != null)
             {
                 DecoAction();
             }
 
-            // ƒAƒCƒeƒ€ˆ—
+            // ã‚¢ã‚¤ãƒ†ãƒ å‡¦ç†
             m_Item.Execute();
         }
     }

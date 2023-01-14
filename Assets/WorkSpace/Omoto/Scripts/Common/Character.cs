@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
@@ -9,30 +9,30 @@ using EventState;
 public abstract class Character : MonoBehaviour
 {
     /// <summary>
-    /// ƒXƒe[ƒ^ƒX’l
+    /// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å€¤
     /// </summary>
     protected class Parameter
     {
-        public float dex;      // ˆÚ“®‘¬“x
+        public float dex;      // ç§»å‹•é€Ÿåº¦
     }
 
     /// <summary>
-    /// ƒXƒe[ƒgŠÇ—
+    /// ã‚¹ãƒ†ãƒ¼ãƒˆç®¡ç†
     /// </summary>
     protected StateProcessor m_State;
 
     /// <summary>
-    /// ‘€ìˆ—
+    /// æ“ä½œå‡¦ç†
     /// </summary>
     protected virtual void Ctrl() { }
 
     /// <summary>
-    /// ƒXƒe[ƒgƒ`ƒFƒbƒN
+    /// ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     /// </summary>
     protected abstract void CheckState();
 
     /// <summary>
-    /// ƒCƒxƒ“ƒgˆ—i”íƒ_ƒ[ƒW.UŒ‚ƒ“‚È‚Çj
+    /// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ï¼ˆè¢«ãƒ€ãƒ¡ãƒ¼ã‚¸.æ”»æ’ƒæ™‚ãƒ³ãªã©ï¼‰
     /// </summary>
     /// <param name="eventProcessor"></param>
     protected abstract void OnEvent(EventProcessor eventProcessor);

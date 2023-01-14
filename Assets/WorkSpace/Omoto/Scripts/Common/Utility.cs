@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace Utility
 {
-    // —ñ‹“‘ÌƒVƒŠƒAƒ‰ƒCƒY‰»\‘¢
+    // åˆ—æŒ™ä½“ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºåŒ–æ§‹é€ 
     //============================================
     public static class EnumUtil<T> where T : struct, IConvertible
     {
@@ -16,13 +16,13 @@ namespace Utility
 
         static EnumUtil()
         {
-            // Œ^ƒ`ƒFƒbƒN
+            // å‹ãƒã‚§ãƒƒã‚¯
             var type = typeof(T);
             Assert.IsTrue(type.IsEnum, type.Name + " is not enum.");
 
             if (!type.IsEnum) return;
 
-            // ƒLƒƒƒbƒVƒ…ì¬
+            // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ä½œæˆ
             var values = Enum.GetValues(type);
             m_Table = new Dictionary<string, T>(values.Length);
             foreach (T value in values)
@@ -33,26 +33,26 @@ namespace Utility
         }
 
         /// <summary>
-        /// ’læ“¾
+        /// å€¤å–å¾—
         /// </summary>
-        /// <param name="name">ƒL[</param>
-        /// <returns>ƒL[‚É‘Î‰‚µ‚½’l</returns>
+        /// <param name="name">ã‚­ãƒ¼</param>
+        /// <returns>ã‚­ãƒ¼ã«å¯¾å¿œã—ãŸå€¤</returns>
         public static T GetValue(string name)
         {
             return m_Table[name];
         }
 
         /// <summary>
-        /// ƒL[ŠÜ—L”»’è
+        /// ã‚­ãƒ¼å«æœ‰åˆ¤å®š
         /// </summary>
-        /// <param name="name">ƒL[</param>
-        /// <returns>ƒL[‚ªŠÜ‚Ü‚ê‚é‚©</returns>
+        /// <param name="name">ã‚­ãƒ¼</param>
+        /// <returns>ã‚­ãƒ¼ãŒå«ã¾ã‚Œã‚‹ã‹</returns>
         public static bool IsDefined(string name)
         {
             return m_Table.ContainsKey(name);
         }
 
-        // ˆÈ‰º ƒpƒ‹ƒXˆ—
+        // ä»¥ä¸‹ ãƒ‘ãƒ«ã‚¹å‡¦ç†
         //============================================
         public static T ParseOrDefault(string name)
         {
@@ -139,17 +139,17 @@ namespace Utility
             return EnumUtil<T>.ParseOrNull(name);
         }
 
-        // —ñ‹“•ÏŠ·
+        // åˆ—æŒ™å¤‰æ›
         public static implicit operator T(EnumString<T> obj) { return obj.value; }
     }
     //============================================
 
-    // ƒL[—ñ‹“‘Ì‚ğƒVƒŠƒAƒ‰ƒCƒY‰»
+    // ã‚­ãƒ¼åˆ—æŒ™ä½“ã‚’ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºåŒ–
     [Serializable]
     public class KeyCodeString : EnumString<KeyCode> { }
 
     //============================================
-    // ƒVƒ“ƒOƒ‹ƒgƒ“ƒAƒ^ƒbƒ`i“Á’è‚ÌƒV[ƒ“‚Ì‚İ‚Åˆµ‚¤ƒIƒuƒWƒFƒNƒgŒü‚¯j
+    // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã‚¢ã‚¿ãƒƒãƒï¼ˆç‰¹å®šã®ã‚·ãƒ¼ãƒ³ã®ã¿ã§æ‰±ã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‘ã‘ï¼‰
     public class SingletonAttacher<T> where T : MonoBehaviour
     {
         static T m_Instance;

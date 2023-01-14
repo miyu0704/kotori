@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 using Utility;
 using Item;
 
-// ŠÇ—ƒNƒ‰ƒX
+// ç®¡ç†ã‚¯ãƒ©ã‚¹
 public class GameManager : MonoBehaviour
 {
-    // ƒQ[ƒ€ƒXƒe[ƒg‚ğŠÇ—‚µ‚½‚èAUI‚ğŒÄ‚Ño‚µ‚½‚è‚·‚éis–ğ
+    // ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ç®¡ç†ã—ãŸã‚Šã€UIã‚’å‘¼ã³å‡ºã—ãŸã‚Šã™ã‚‹é€²è¡Œå½¹
     //============================================
     public class GameProcessor : MonoBehaviour
     {
@@ -16,30 +16,30 @@ public class GameManager : MonoBehaviour
 
         public GameProcessor()
         {
-            // ƒAƒCƒeƒ€ŠÖ˜A‚Ì‰Šú‰»ˆ—
+            // ã‚¢ã‚¤ãƒ†ãƒ é–¢é€£ã®åˆæœŸåŒ–å‡¦ç†
             //============================================
-            // ƒŠƒ\[ƒXŠÇ—–ğ¶¬
+            // ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†å½¹ç”Ÿæˆ
             itemManager = new ItemManager();
 
-            // TODOFƒQ[ƒ€‚É“oê‚·‚éƒAƒCƒeƒ€‚ğ“o˜^
+            // TODOï¼šã‚²ãƒ¼ãƒ ã«ç™»å ´ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç™»éŒ²
             var playerBullet = itemManager.AddItem(new Player.Bullet());
-            itemManager.AddItem(new Player.BulletOnDebug(playerBullet));    // Debug‹@”\iƒfƒRƒŒ[ƒgj•t‚«©‹@’e
+            itemManager.AddItem(new Player.BulletOnDebug(playerBullet));    // Debugæ©Ÿèƒ½ï¼ˆãƒ‡ã‚³ãƒ¬ãƒ¼ãƒˆï¼‰ä»˜ãè‡ªæ©Ÿå¼¾
             itemManager.AddItem(new Player.Bomb());
         }
 
         ~GameProcessor()
         {
-            // ƒAƒCƒeƒ€ŠÖ˜A‚Ì”jŠüˆ—
+            // ã‚¢ã‚¤ãƒ†ãƒ é–¢é€£ã®ç ´æ£„å‡¦ç†
             //============================================
             itemManager.ClearItems();
             Destroy(itemManager);
         }
 
-        // ˆÈ‰º ƒQ[ƒ€Àsƒƒ\ƒbƒh
-        // TODOF•K—v‚Èisˆ—
+        // ä»¥ä¸‹ ã‚²ãƒ¼ãƒ å®Ÿè¡Œãƒ¡ã‚½ãƒƒãƒ‰
+        // TODOï¼šå¿…è¦ãªé€²è¡Œå‡¦ç†
         //============================================
 
-        // UI•\¦
+        // UIè¡¨ç¤º
         public void CallUI(int id)
         {
 
@@ -48,12 +48,12 @@ public class GameManager : MonoBehaviour
 
     public GameProcessor gameProcessor { get; private set; }
 
-    // ƒQ[ƒ€‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+    // ã‚²ãƒ¼ãƒ ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     //============================================
     [CreateAssetMenu(fileName = "GameParameter", menuName = "ScriptableObjects/GameParameter")]
     public class GameParameter : ScriptableObject
     {
-        // TODOF‚±‚±‚ÉƒQ[ƒ€‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^‚ğ‹L“ü
+        // TODOï¼šã“ã“ã«ã‚²ãƒ¼ãƒ ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨˜å…¥
         public float volume;
     }
 
@@ -61,40 +61,40 @@ public class GameManager : MonoBehaviour
     [SerializeField] string m_GPAssetPath;
     public GameParameter gameParameter { get; private set; }
 
-    // ‰Šúˆ—
+    // åˆæœŸå‡¦ç†
     //============================================
     private void Awake()
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“ƒAƒ^ƒbƒ`ˆ—
+        // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã‚¢ã‚¿ãƒƒãƒå‡¦ç†
         if (SingletonAttacher<GameManager>.hasInstance)
         {
-            // d•¡ƒIƒuƒWƒFƒNƒg‚ğ”jŠü‚·‚é
+            // é‡è¤‡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã™ã‚‹
             Destroy(this.gameObject);
         }
         else
         {
-            // ”jŠü‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+            // ç ´æ£„ã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
             DontDestroyOnLoad(this.gameObject);
 
-            // ƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‘ã“ü
-            // FIXMEF‰½ŒÌ‚©“Ç‚İ‚Ü‚ê‚È‚¢
+            // ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥
+            // FIXMEï¼šä½•æ•…ã‹èª­ã¿è¾¼ã¾ã‚Œãªã„
             gameParameter = Resources.Load(m_GPAssetPath) as GameParameter;
         }
     }
 
-    // ˆÈ‰º ƒQ[ƒ€ŠÇ—ƒƒ\ƒbƒh
+    // ä»¥ä¸‹ ã‚²ãƒ¼ãƒ ç®¡ç†ãƒ¡ã‚½ãƒƒãƒ‰
     //============================================
     /// <summary>
-    /// ƒQ[ƒ€Às‚É‚¨‚¯‚é‰Šúˆ—
+    /// ã‚²ãƒ¼ãƒ å®Ÿè¡Œã«ãŠã‘ã‚‹åˆæœŸå‡¦ç†
     /// </summary>
     public void InitProcessor()
     {
-        // ÀsŠÇ—ƒNƒ‰ƒX¶¬
+        // å®Ÿè¡Œç®¡ç†ã‚¯ãƒ©ã‚¹ç”Ÿæˆ
         gameProcessor = new GameProcessor();
     }
 
     /// <summary>
-    /// ƒQ[ƒ€Às‚É‚¨‚¯‚éI—¹ˆ—
+    /// ã‚²ãƒ¼ãƒ å®Ÿè¡Œã«ãŠã‘ã‚‹çµ‚äº†å‡¦ç†
     /// </summary>
     public void TerminateProcessor()
     {

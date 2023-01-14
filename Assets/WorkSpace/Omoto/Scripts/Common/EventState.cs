@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -6,14 +6,14 @@ using System;
 namespace EventState
 {
     /// <summary>
-    /// ƒCƒxƒ“ƒgÀsŠÇ—ƒNƒ‰ƒX
+    /// ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     public abstract class EventProcessor
     {
-        // ƒfƒŠƒQ[ƒgFˆ—‚ğ•ÊƒIƒuƒWƒFƒNƒg‚ÉˆÚ÷‚·‚é‚±‚Æ
+        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆï¼šå‡¦ç†ã‚’åˆ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç§»è­²ã™ã‚‹ã“ã¨
         public Action ExecAction { get; set; }
 
-        // ÀsŠÇ—
+        // å®Ÿè¡Œç®¡ç†
         public virtual void Execute()
         {
             if (ExecAction != null)

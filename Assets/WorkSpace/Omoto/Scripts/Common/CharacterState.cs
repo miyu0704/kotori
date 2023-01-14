@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using JetBrains.Annotations;
 
 /// <summary>
-/// ƒLƒƒƒ‰ó‘Ô
+/// ã‚­ãƒ£ãƒ©çŠ¶æ…‹
 /// </summary>
 namespace CharacterState
 {
     /// <summary>
-    /// ƒXƒe[ƒg—Dæ“x—ñ‹“‘Ì
+    /// ã‚¹ãƒ†ãƒ¼ãƒˆå„ªå…ˆåº¦åˆ—æŒ™ä½“
     /// </summary>
     public enum StatePriority
     {
@@ -23,19 +23,19 @@ namespace CharacterState
     }
 
     /// <summary>
-    /// ƒXƒe[ƒgÀsŠÇ—ƒNƒ‰ƒX
+    /// ã‚¹ãƒ†ãƒ¼ãƒˆå®Ÿè¡Œç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     public abstract class StateProcessor
     {
         /// <summary>
-        /// QÆƒLƒƒƒ‰ƒNƒ^[
+        /// å‚ç…§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
         /// </summary>
         Character character;
 
-        // ƒfƒŠƒQ[ƒgFˆ—‚ğ•ÊƒIƒuƒWƒFƒNƒg‚ÉˆÚ÷‚·‚é
+        // ãƒ‡ãƒªã‚²ãƒ¼ãƒˆï¼šå‡¦ç†ã‚’åˆ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç§»è­²ã™ã‚‹
         public Action ExecAction { get; set; }
 
-        // ÀsŠÇ—
+        // å®Ÿè¡Œç®¡ç†
         public virtual void Execute() 
         {
             if(ExecAction != null)
@@ -44,13 +44,13 @@ namespace CharacterState
             }
         }
 
-        // ƒXƒe[ƒg—Dæ“xæ“¾
+        // ã‚¹ãƒ†ãƒ¼ãƒˆå„ªå…ˆåº¦å–å¾—
         public abstract StatePriority GetPriority();
 
-        // ƒXƒe[ƒg–¼æ“¾
+        // ã‚¹ãƒ†ãƒ¼ãƒˆåå–å¾—
         public abstract string GetStateName();
 
-        // ƒXƒe[ƒg—Dæ“x”äŠr operator
+        // ã‚¹ãƒ†ãƒ¼ãƒˆå„ªå…ˆåº¦æ¯”è¼ƒ operator
         //============================================
         public static bool operator <(StateProcessor processor, StatePriority priority)
         {
@@ -62,7 +62,7 @@ namespace CharacterState
         }
     }
 
-    // ˆÈ‰º ƒLƒƒƒ‰ƒNƒ^[‹¤’ÊƒXƒe[ƒg
+    // ä»¥ä¸‹ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å…±é€šã‚¹ãƒ†ãƒ¼ãƒˆ
     //============================================
     public class IdleState : StateProcessor
     {

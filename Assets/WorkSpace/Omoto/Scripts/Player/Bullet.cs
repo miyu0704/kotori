@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float speed;    // ‘¬“x
+    private float speed;    // é€Ÿåº¦
 
     // Start is called before the first frame update
     void Start()
@@ -16,13 +16,13 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ©g‚ÌŒü‚«ƒxƒNƒgƒ‹æ“¾
+        // è‡ªèº«ã®å‘ããƒ™ã‚¯ãƒˆãƒ«å–å¾—
         float angleDir = transform.eulerAngles.z * (Mathf.PI / 180.0f);
         Vector3 dir = new Vector3(Mathf.Cos(angleDir), Mathf.Sin(angleDir), 0.0f);
 
-        // ©g‚ÌŒü‚«‚ÉˆÚ“®
+        // è‡ªèº«ã®å‘ãã«ç§»å‹•
         transform.position += dir * speed * Time.deltaTime;
 
-        //TODO: ©g‚ğíœ
+        //TODO: è‡ªèº«ã‚’å‰Šé™¤
     }
 }

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,19 +12,19 @@ using Utility;
 
 public class Player : Character
 {
-    // ƒIƒuƒWƒFƒNƒg•Ï”
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ•°
     //============================================
-    [Header("©‹@‚Ì’e")]
+    [Header("è‡ªæ©Ÿã®å¼¾")]
     [SerializeField]
     private GameObject m_Bullet;
     public GameObject bullet => m_Bullet;
 
-    // ƒRƒ“ƒ|[ƒlƒ“ƒg•Ï”
+    // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå¤‰æ•°
     //============================================
     private Rigidbody2D m_Rb2d;
     private Animator    m_Anim;
 
-    // ’l•Ï”
+    // å€¤å¤‰æ•°
     //============================================
     private float  m_InputX;
     private float  m_InputY;
@@ -33,33 +33,33 @@ public class Player : Character
     [System.Serializable]
     class MyParameter : Parameter
     {
-        public float jump;          // ƒWƒƒƒ“ƒv—Í
-        public float sliding;       // ƒXƒ‰ƒCƒfƒBƒ“ƒO‘¬“x
+        public float jump;          // ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+        public float sliding;       // ã‚¹ãƒ©ã‚¤ãƒ‡ã‚£ãƒ³ã‚°é€Ÿåº¦
     }
 
     class MyStatus
     {
-        public bool  isGrounding;   // Ú’n‚µ‚Ä‚¢‚é‚©
-        public bool  isJumping;     // ƒWƒƒƒ“ƒv’†‚©
-        public bool  isSticking;    // ’£‚è•t‚«’†‚©
+        public bool  isGrounding;   // æ¥åœ°ã—ã¦ã„ã‚‹ã‹
+        public bool  isJumping;     // ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã‹
+        public bool  isSticking;    // å¼µã‚Šä»˜ãä¸­ã‹
 
-        public bool  isDead;        // €–Só‘Ô‚©
+        public bool  isDead;        // æ­»äº¡çŠ¶æ…‹ã‹
     }
 
-    [Header("ƒpƒ‰ƒ[ƒ^")]
+    [Header("ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿")]
     [SerializeField] MyParameter     m_Param;
                      MyStatus        m_Status;
 
-    // ‚»‚Ì‘¼iƒIƒuƒWƒFƒNƒgŒÅ—L•Ï”j
+    // ãã®ä»–ï¼ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå›ºæœ‰å¤‰æ•°ï¼‰
     //============================================
-    [Header("Action KeysiSliding, Attack, Bombj")]
+    [Header("Action Keysï¼ˆSliding, Attack, Bombï¼‰")]
     [SerializeField]
-    private KeyCode[] m_ActionKeys;     // ƒAƒNƒVƒ‡ƒ“‘€ìƒL[
+    private KeyCode[] m_ActionKeys;     // ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æ“ä½œã‚­ãƒ¼
 
-    // ‚»‚Ì‘¼iƒXƒe[ƒgj
+    // ãã®ä»–ï¼ˆã‚¹ãƒ†ãƒ¼ãƒˆï¼‰
     //============================================
     /// <summary>
-    /// ƒvƒŒƒCƒ„[ƒXƒe[ƒg—ñ‹“‘Ì
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆåˆ—æŒ™ä½“
     /// </summary>
     enum MyStatePriority
     {
@@ -84,7 +84,7 @@ public class Player : Character
         }
     }
 
-    // ‚»‚Ì‘¼iƒCƒxƒ“ƒgj
+    // ãã®ä»–ï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰
     //============================================
     class DamageEvent : EventProcessor
     {
@@ -92,20 +92,20 @@ public class Player : Character
         {
             stateProcessor = new DamageState();
 
-            // TODOFGameOver‚ÌUI‚ğ•\¦‚·‚é
+            // TODOï¼šGameOverã®UIã‚’è¡¨ç¤ºã™ã‚‹
 
         }
     }
 
     /*
-     * ƒ_ƒ[ƒWƒCƒxƒ“ƒg‚Ìd–
+     * ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆã®ä»•äº‹
      * 
-     * ‚PDƒvƒŒƒCƒ„[‚ğ€–Só‘Ô‚É‚·‚éim_State‚ğDamageState‚É‘JˆÚ‚·‚éj
-     * ‚QDGameOver‚ÌUI‚ğ•\¦‚·‚é
+     * ï¼‘ï¼ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ­»äº¡çŠ¶æ…‹ã«ã™ã‚‹ï¼ˆm_Stateã‚’DamageStateã«é·ç§»ã™ã‚‹ï¼‰
+     * ï¼’ï¼GameOverã®UIã‚’è¡¨ç¤ºã™ã‚‹
      */
 
-    // ‚»‚Ì‘¼iƒAƒCƒeƒ€j
-    // => GameProcessor‚É“o˜^ˆ—‚ğ‘‚­‚±‚ÆI
+    // ãã®ä»–ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ï¼‰
+    // => GameProcessorã«ç™»éŒ²å‡¦ç†ã‚’æ›¸ãã“ã¨ï¼
     //============================================
     public class Bullet : ItemProcessor 
     {
@@ -139,32 +139,32 @@ public class Player : Character
     {
         public Bomb()
         {
-            // Àsˆ—‚ğ’è‹`
+            // å®Ÿè¡Œå‡¦ç†ã‚’å®šç¾©
             ExecAction = Attack;
         }
 
         private void Attack()
         {
-            // TODOF“G‚ğ‘S‚Ä–Å‚Ú‚·ˆ—
+            // TODOï¼šæ•µã‚’å…¨ã¦æ»…ã¼ã™å‡¦ç†
         }
     }
 
     ItemProcessor m_ShotBullet;
     ItemProcessor m_UseBomb;
 
-    // ‰Šúˆ—
+    // åˆæœŸå‡¦ç†
     //============================================
     void Start()
     {
-        // TODOFƒQ[ƒ€ŠJniTitleScene -> GameScenej‚É‚±‚ê‚ğs‚¤B
+        // TODOï¼šã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ï¼ˆTitleScene -> GameSceneï¼‰ã«ã“ã‚Œã‚’è¡Œã†ã€‚
         SingletonAttacher<GameManager>.instance.InitProcessor();
 
-        // ƒRƒ“ƒ|[ƒlƒ“ƒgæ“¾
+        // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—
         //============================================
         m_Rb2d = GetComponent<Rigidbody2D>();
         m_Anim = GetComponent<Animator>();
 
-        // ƒXƒe[ƒg, ƒXƒe[ƒ^ƒX‰Šú‰»
+        // ã‚¹ãƒ†ãƒ¼ãƒˆ, ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸåŒ–
         //============================================
         m_State = new IdleState();
         m_State.ExecAction = Idle;
@@ -175,35 +175,35 @@ public class Player : Character
         m_Status.isSticking = false;
         m_Status.isDead = false;
 
-        // Še‘€ìƒL[‚Ì’Ç‰Á
+        // å„æ“ä½œã‚­ãƒ¼ã®è¿½åŠ 
         //============================================
         m_InputOthers = new bool[m_ActionKeys.Length];
 
-        // ƒAƒCƒeƒ€ŠÖ˜A‚Ìˆ—
+        // ã‚¢ã‚¤ãƒ†ãƒ é–¢é€£ã®å‡¦ç†
         //============================================
     }
 
-    // XVˆ—
+    // æ›´æ–°å‡¦ç†
     //============================================
     void Update()
     {
-        // ‘€ìˆ—
+        // æ“ä½œå‡¦ç†
         //============================================
-        // TODOFƒXƒe[ƒg–¼‚Ì•ÏX
+        // TODOï¼šã‚¹ãƒ†ãƒ¼ãƒˆåã®å¤‰æ›´
         if (m_State.GetStateName() != "state:Damage") 
             Ctrl();
 
-        // ƒXƒe[ƒgˆ—
+        // ã‚¹ãƒ†ãƒ¼ãƒˆå‡¦ç†
         //============================================
-        CheckState();           // ƒXƒe[ƒgğŒ‚É‰ˆ‚Á‚½‘JˆÚ‚È‚Ç
-        m_State.Execute();      // ƒXƒe[ƒgˆ—
+        CheckState();           // ã‚¹ãƒ†ãƒ¼ãƒˆæ¡ä»¶ã«æ²¿ã£ãŸé·ç§»ãªã©
+        m_State.Execute();      // ã‚¹ãƒ†ãƒ¼ãƒˆå‡¦ç†
     }
 
-    // Õ“Ë‚É‚æ‚éˆ—
+    // è¡çªã«ã‚ˆã‚‹å‡¦ç†
     //============================================
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ú’n”»’è
+        // æ¥åœ°åˆ¤å®š
         if (collision.gameObject.tag == "Ground")
         {
             m_Status.isGrounding = true;
@@ -211,7 +211,7 @@ public class Player : Character
             return;
         }
 
-        // ”í’e”»’è
+        // è¢«å¼¾åˆ¤å®š
         if(collision.gameObject.tag == "Bullet")
         {
             OnDamage();
@@ -224,16 +224,16 @@ public class Player : Character
         */
     }
 
-    // ˆÈ‰º ƒIƒuƒWƒFƒNƒgƒƒ\ƒbƒh
+    // ä»¥ä¸‹ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
     //============================================
     protected override void Ctrl()
     {
-        // ˆÚ“®‘€ì
+        // ç§»å‹•æ“ä½œ
         //============================================
         m_InputX = Input.GetAxisRaw("Horizontal");
         m_InputY = Input.GetAxisRaw("Jump");
 
-        // ƒAƒNƒVƒ‡ƒ“‘€ì
+        // ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æ“ä½œ
         //============================================
         foreach (var keys in m_ActionKeys.Select((value, index) => new { value, index }))
         {
@@ -243,11 +243,11 @@ public class Player : Character
 
     protected override void CheckState()
     {
-        // ƒWƒƒƒ“ƒv or ƒXƒ‰ƒCƒfƒBƒ“ƒO
+        // ã‚¸ãƒ£ãƒ³ãƒ— or ã‚¹ãƒ©ã‚¤ãƒ‡ã‚£ãƒ³ã‚°
         //============================================
         if (m_State < StatePriority.e_JUMP)
         {
-            if (0 < m_InputY)            // LshiftƒL[‰Ÿ‰º
+            if (0 < m_InputY)            // Lshiftã‚­ãƒ¼æŠ¼ä¸‹
             {
                 m_State = new JumpState(ref m_Rb2d, new Vector2(m_Rb2d.velocity.x, m_Param.jump));
                 m_State.ExecAction = Jump;
@@ -256,18 +256,18 @@ public class Player : Character
                 m_Status.isGrounding = false;
                 m_Status.isJumping = true;
             }
-            else if(m_InputOthers[0])   // ƒAƒNƒVƒ‡ƒ“ƒL[‚P‚Â–Ú‰Ÿ‰º
+            else if(m_InputOthers[0])   // ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ï¼‘ã¤ç›®æŠ¼ä¸‹
             {
                 m_State = new SlidingState(ref m_Rb2d, new Vector2(m_Param.sliding * Mathf.Clamp(transform.localScale.x, -1, 1), m_Rb2d.velocity.y));
                 m_State.ExecAction = Sliding;
             }
         }
 
-        // ‰¡ˆÚ“®
+        // æ¨ªç§»å‹•
         //============================================
         if (m_State < StatePriority.e_MOVE)
         {
-            if (m_InputX != 0)  // left, rightƒL[‰Ÿ‰º
+            if (m_InputX != 0)  // left, rightã‚­ãƒ¼æŠ¼ä¸‹
             {
                 m_State = new MoveState();
                 m_State.ExecAction = Move;
@@ -281,7 +281,7 @@ public class Player : Character
     }
 
     /// <summary>
-    /// ‘Ò‹@ˆ—
+    /// å¾…æ©Ÿæ™‚å‡¦ç†
     /// </summary>
     private void Idle()
     {
@@ -293,48 +293,48 @@ public class Player : Character
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     private void Move()
     {
-        // ¶‰EˆÚ“®
+        // å·¦å³ç§»å‹•
         //============================================
         m_Rb2d.velocity = new Vector2(m_InputX * m_Param.dex, m_Rb2d.velocity.y);
         if (0 < m_InputX)
         {
-            // ‰E•ûŒü‚ğŒü‚­
+            // å³æ–¹å‘ã‚’å‘ã
             transform.localScale = new Vector2(3, 3);
             m_Bullet.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (m_InputX < 0)
         {
-            // ¶•ûŒü‚ğŒü‚­
+            // å·¦æ–¹å‘ã‚’å‘ã
             transform.localScale = new Vector2(-3, 3);
             m_Bullet.transform.eulerAngles = new Vector3(0, 0, 180);
         }
 
-        // ˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“
+        // ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         //============================================
-        if (m_State < StatePriority.e_JUMP)     // ƒWƒƒƒ“ƒvƒAƒjƒ[ƒVƒ‡ƒ“‚ğ—Dæ‚·‚é
+        if (m_State < StatePriority.e_JUMP)     // ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å„ªå…ˆã™ã‚‹
         {
             m_Anim.SetFloat("Speed", Mathf.Abs(m_Param.dex * m_InputX));
         }
 
-        // ƒXƒe[ƒg‘JˆÚiğŒF‘Ò‹@j
+        // ã‚¹ãƒ†ãƒ¼ãƒˆé·ç§»ï¼ˆæ¡ä»¶ï¼šå¾…æ©Ÿï¼‰
         //============================================
         if (m_InputX == 0)
         {
             m_State = new IdleState();
             m_State.ExecAction = Idle;
         }
-    }@
+    }ã€€
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒfƒBƒ“ƒO
+    /// ã‚¹ãƒ©ã‚¤ãƒ‡ã‚£ãƒ³ã‚°
     /// </summary>
     private void Sliding()
     {
-        // ƒXƒe[ƒg‘JˆÚiğŒFx‘¬“x 0.2ˆÈ‰ºj
+        // ã‚¹ãƒ†ãƒ¼ãƒˆé·ç§»ï¼ˆæ¡ä»¶ï¼šxé€Ÿåº¦ 0.2ä»¥ä¸‹ï¼‰
         //============================================
         if (Mathf.Abs(m_Rb2d.velocity.x) < 0.2)
         {
@@ -344,11 +344,11 @@ public class Player : Character
     }
 
     /// <summary>
-    /// ƒWƒƒƒ“ƒvˆ—
+    /// ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
     /// </summary>
     private void Jump()
     {
-        // ƒXƒe[ƒg‘JˆÚiğŒFÚ’nj
+        // ã‚¹ãƒ†ãƒ¼ãƒˆé·ç§»ï¼ˆæ¡ä»¶ï¼šæ¥åœ°ï¼‰
         //============================================
         if (m_Status.isGrounding)
         {
@@ -359,8 +359,8 @@ public class Player : Character
 
     protected void OnAttack(int atkCode)
     {
-        // UŒ‚‚Ìí—Ş‚É‡‚í‚¹‚½‘Oˆ—
-        // TODOFƒ{ƒ€iUŒ‚ƒAƒCƒeƒ€j‚ÍUŒ‚ƒXƒe[ƒg‚É‚Äs‚¤
+        // æ”»æ’ƒã®ç¨®é¡ã«åˆã‚ã›ãŸå‰å‡¦ç†
+        // TODOï¼šãƒœãƒ ï¼ˆæ”»æ’ƒã‚¢ã‚¤ãƒ†ãƒ ï¼‰ã¯æ”»æ’ƒã‚¹ãƒ†ãƒ¼ãƒˆã«ã¦è¡Œã†
         //============================================
         switch (atkCode)
         {
@@ -372,19 +372,19 @@ public class Player : Character
                 break;
         }
 
-        // ƒXƒe[ƒg‘JˆÚ
+        // ã‚¹ãƒ†ãƒ¼ãƒˆé·ç§»
         //============================================
         // m_State = new AttackState();
     }
 
     private void OnDamage()
     {
-        // ƒCƒxƒ“ƒgì¬
+        // ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
         //============================================
         DamageEvent damageEvent = new DamageEvent(ref m_State);
         damageEvent.ExecAction = () => m_Status.isDead = true;
 
-        // ƒCƒxƒ“ƒgÀs
+        // ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
         //============================================
         OnEvent(damageEvent);
     }
