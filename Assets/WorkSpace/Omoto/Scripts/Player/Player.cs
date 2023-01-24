@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -210,18 +210,18 @@ public class Player : Character
             m_Status.isJumping   = false;
             return;
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
         // 被弾判定
-        if(collision.gameObject.tag == "Bullet")
+        if (collider.gameObject.tag == "Bullet")
         {
+            var damage = collider.gameObject.GetComponent<BulletProcessor>().Damage;
             OnDamage();
+
+            Debug.Log("Hit");
         }
-        /*
-        if (collision.gameObject.tag == "")
-        {
-            OnDamage();
-        }
-        */
     }
 
     // 以下 オブジェクトメソッド

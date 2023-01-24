@@ -1,16 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletProcessor : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;    // 速度
+    [SerializeField] private float speed;       // 速度
+    [SerializeField] private float damage;      // ダメージ
+
+    // ダメージプロパティ
+    public float Damage { get { return damage; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
