@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using Utility;
 
 /// <summary>
 /// Item：キャラクターに付随する様々なオブジェクトを柔軟に対応できるように作成 <br />

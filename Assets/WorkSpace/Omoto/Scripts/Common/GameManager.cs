@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Utility;
+using Utility.Attribute;
 using Item;
 
 // 管理クラス
@@ -12,7 +12,12 @@ public class GameManager : MonoBehaviour
     //============================================
     public class GameProcessor : MonoBehaviour
     {
+        // コンポーネント変数
+        //============================================
         public static ItemManager itemManager { get; private set; }
+
+        // プロパティ
+        //============================================
 
         public GameProcessor()
         {
@@ -25,6 +30,9 @@ public class GameManager : MonoBehaviour
             var playerBullet = itemManager.AddItem(new Player.Bullet());
             itemManager.AddItem(new Player.BulletOnDebug(playerBullet));    // Debug機能（デコレート）付き自機弾
             itemManager.AddItem(new Player.Bomb());
+
+            // TODO：別の場所で生成
+            BossGenerator.Generate("Sakuya");
         }
 
         ~GameProcessor()
@@ -48,19 +56,6 @@ public class GameManager : MonoBehaviour
 
     public GameProcessor gameProcessor { get; private set; }
 
-    // ゲームに関するパラメータ
-    //============================================
-    [CreateAssetMenu(fileName = "GameParameter", menuName = "ScriptableObjects/GameParameter")]
-    public class GameParameter : ScriptableObject
-    {
-        // TODO：ここにゲームに関するパラメータを記入
-        public float volume;
-    }
-
-    [Header("GameParameter aseet path")]
-    [SerializeField] string m_GPAssetPath;
-    public GameParameter gameParameter { get; private set; }
-
     // 初期処理
     //============================================
     private void Awake()
@@ -75,10 +70,6 @@ public class GameManager : MonoBehaviour
         {
             // 破棄されないようにする
             DontDestroyOnLoad(this.gameObject);
-
-            // ゲームパラメータ代入
-            // FIXME：何故か読み込まれない
-            gameParameter = Resources.Load(m_GPAssetPath) as GameParameter;
         }
     }
 

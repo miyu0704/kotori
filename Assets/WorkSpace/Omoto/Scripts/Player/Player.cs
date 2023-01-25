@@ -8,7 +8,8 @@ using CharacterState;
 using EventState;
 using Item;
 
-using Utility;
+using Utility.Editor;
+using Utility.Attribute;
 
 public class Player : Character
 {
@@ -18,11 +19,6 @@ public class Player : Character
     [SerializeField]
     private GameObject m_Bullet;
     public GameObject bullet => m_Bullet;
-
-    // コンポーネント変数
-    //============================================
-    private Rigidbody2D m_Rb2d;
-    private Animator    m_Anim;
 
     // 値変数
     //============================================
@@ -107,9 +103,9 @@ public class Player : Character
     // その他（アイテム）
     // => GameProcessorに登録処理を書くこと！
     //============================================
-    public class Bullet : ItemProcessor 
+    public class Bullet : ItemProcessor
     {
-        Player player = UnityEngine.Object.FindObjectOfType<Player>(true);
+        Player player = FindObjectOfType<Player>(true);
 
         public Bullet()
         {
@@ -159,10 +155,8 @@ public class Player : Character
         // TODO：ゲーム開始時（TitleScene -> GameScene）にこれを行う。
         SingletonAttacher<GameManager>.instance.InitProcessor();
 
-        // コンポーネント取得
-        //============================================
-        m_Rb2d = GetComponent<Rigidbody2D>();
-        m_Anim = GetComponent<Animator>();
+        // 共通初期処理
+        Init();
 
         // ステート, ステータス初期化
         //============================================
@@ -193,10 +187,8 @@ public class Player : Character
         if (m_State.GetStateName() != "state:Damage") 
             Ctrl();
 
-        // ステート処理
-        //============================================
-        CheckState();           // ステート条件に沿った遷移など
-        m_State.Execute();      // ステート処理
+        // キャラ共通処理
+        Exec();
     }
 
     // 衝突による処理
@@ -215,7 +207,7 @@ public class Player : Character
     private void OnTriggerEnter2D(Collider2D collider)
     {
         // 被弾判定
-        if (collider.gameObject.tag == "Bullet")
+        if (collider.gameObject.tag == "Enemy")
         {
             var damage = collider.gameObject.GetComponent<BulletProcessor>().Damage;
             OnDamage();
@@ -313,19 +305,18 @@ public class Player : Character
             m_Bullet.transform.eulerAngles = new Vector3(0, 0, 180);
         }
 
-        // 移動アニメーション
-        //============================================
-        if (m_State < StatePriority.e_JUMP)     // ジャンプアニメーションを優先する
-        {
-            m_Anim.SetFloat("Speed", Mathf.Abs(m_Param.dex * m_InputX));
-        }
-
+        // 移動アニメーション（ジャンプアニメーションを優先する）
         // ステート遷移（条件：待機）
         //============================================
-        if (m_InputX == 0)
+        if (m_State < StatePriority.e_JUMP)     
         {
-            m_State = new IdleState();
-            m_State.ExecAction = Idle;
+            m_Anim.SetFloat("Speed", Mathf.Abs(m_Param.dex * m_InputX));
+
+            if (m_InputX == 0)
+            {
+                m_State = new IdleState();
+                m_State.ExecAction = Idle;
+            }
         }
     }　
 
